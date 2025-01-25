@@ -1,0 +1,8 @@
+Script akan membaca daftar kata sandi dari file wordlist yang telah ditentukan pengguna. Setiap kata sandi akan dikodekan menggunakan URL encoding sebelum dikirim sebagai bagian dari permintaan POST ke endpoint API. Script ini juga mencakup mekanisme untuk menangani berbagai status respons server, seperti:
+
+1. Sukses (Status Code 200): Jika kata sandi ditemukan valid, script akan mencetak pesan sukses di terminal dan menyimpannya ke dalam file log untuk dokumentasi.
+2. Gagal (Status Code 401): Jika kata sandi tidak valid, script mencatatnya sebagai percobaan yang gagal.
+3. Rate-Limiting (Status Code 429): Script mendeteksi batasan jumlah permintaan dari server dan secara otomatis menunggu selama 3 menit sebelum melanjutkan.
+4. Kesalahan Server (Status Code 500): Jika server mengalami masalah, script menunggu beberapa saat sebelum mencoba kembali.
+
+Script ini juga dilengkapi fitur pewarnaan terminal dengan Colorama, yang mempermudah pengguna dalam memantau status percobaan (sukses, gagal, atau masalah). Semua hasil signifikan disimpan dalam file log untuk keperluan audit. Karena tidak menggunakan threading, setiap kata sandi diproses secara berurutan.
